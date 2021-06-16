@@ -121,15 +121,24 @@
   <data name="endGame" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\endGame.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="freexeEffect" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\446112__justinvoke__freeze.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="pointLost" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\253174__suntemple__retro-you-lose-sfx.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="pointscore" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pointscore.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="slowdownEffect" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\255202__michael-kur95__starship-01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="speedBoost" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAEAQAAABZTeXN0ZW0uSU8uTWVtb3J5U3RyZWFtCgAAAAdfYnVmZmVyB19v
         cmlnaW4JX3Bvc2l0aW9uB19sZW5ndGgJX2NhcGFjaXR5C19leHBhbmRhYmxlCV93cml0YWJsZQpfZXhw
         b3NhYmxlB19pc09wZW4dTWFyc2hhbEJ5UmVmT2JqZWN0K19faWRlbnRpdHkHAAAAAAAAAAACAggICAgB
-        AQEBCQIAAAAAAAAAAAAAABhwAwAYcAMAAAEAAQoPAgAAABhwAwACUklGRhBwAwBXQVZFZm10IBAAAAAB
+        AQEBCQIAAAAAAAAAGHADABhwAwAYcAMAAAEAAQoPAgAAABhwAwACUklGRhBwAwBXQVZFZm10IBAAAAAB
         AAIARKwAABCxAgAEABAAZGF0YexvAwAdAB0AdAB0AHkAeQC8ALwApgCmAOEA4AB+AH8AKwArAPb+9P5z
         /Xf9hvuB+zr6Pvow+S75cftw+3kCfAKeC5oLyBLMEnwPeQ80DTYNKAgnCGQGZAZwA3ADsf2x/Zb5lvmp
         /ar91wPWA3oAegB+9H70ct5y3pPalNpQ4k7iLvIx8nL5bvn4+Pz4DPsJ+0ELQguNGY4ZXxldGW4OcA7a

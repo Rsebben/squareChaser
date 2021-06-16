@@ -92,5 +92,14 @@
   <ItemGroup>
     <None Include="Resources\endGame.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\255202__michael-kur95__starship-01.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\253174__suntemple__retro-you-lose-sfx.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\446112__justinvoke__freeze.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -34,6 +34,7 @@ namespace squareChaser
             this.player2ScoreLabel = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.winlabel = new System.Windows.Forms.Label();
+            this.ruleBox = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // player1ScoreLabel
@@ -77,12 +78,24 @@ namespace squareChaser
             this.winlabel.TabIndex = 2;
             this.winlabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // ruleBox
+            // 
+            this.ruleBox.BackColor = System.Drawing.Color.Transparent;
+            this.ruleBox.Font = new System.Drawing.Font("Bodoni MT Condensed", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ruleBox.ForeColor = System.Drawing.Color.White;
+            this.ruleBox.Location = new System.Drawing.Point(12, 384);
+            this.ruleBox.Name = "ruleBox";
+            this.ruleBox.Size = new System.Drawing.Size(658, 260);
+            this.ruleBox.TabIndex = 3;
+            this.ruleBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(682, 653);
+            this.Controls.Add(this.ruleBox);
             this.Controls.Add(this.winlabel);
             this.Controls.Add(this.player2ScoreLabel);
             this.Controls.Add(this.player1ScoreLabel);
@@ -102,6 +115,7 @@ namespace squareChaser
         private System.Windows.Forms.Label player2ScoreLabel;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.Label winlabel;
+        private System.Windows.Forms.Label ruleBox;
     }
 }
 

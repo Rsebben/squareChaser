@@ -8,16 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using System.Threading;
 
 namespace squareChaser
 {
     public partial class Form1 : Form
     {
         //global varibles
-        Rectangle player1 = new Rectangle(250, 140, 20, 20);
-        Rectangle player2 = new Rectangle(230, 120, 20, 20);
-        Rectangle pointsquare = new Rectangle(295, 140, 10, 10);
-        Rectangle speedboost = new Rectangle(295, 195, 10, 10);
+        Rectangle player1 = new Rectangle(200, 140, 20, 20);
+        Rectangle player2 = new Rectangle(230, 20, 20, 20);
+        Rectangle pointsquare = new Rectangle(195, 240, 10, 10);
+        Rectangle speedboost = new Rectangle(95, 95, 10, 10);
+        Rectangle slowdown = new Rectangle(29, 105, 10, 10);
+        Rectangle scorereduction = new Rectangle(395, 190, 10, 10);
+        Rectangle freeze = new Rectangle(25, 17, 10, 10);
 
         int player1Score = 0;
         int player2Score = 0;
@@ -34,16 +38,23 @@ namespace squareChaser
         bool downArrowDown = false;
         bool leftArrowDown = false;
         bool rightArrowDown = false;
+        bool showRules = true;
 
         SolidBrush greenBrush = new SolidBrush(Color.LimeGreen);
         SolidBrush redBrush = new SolidBrush(Color.Red);
         SolidBrush whiteBrush = new SolidBrush(Color.White);
         SolidBrush yellowBrush = new SolidBrush(Color.Yellow);
+        SolidBrush blueBrush = new SolidBrush(Color.Blue);
+        SolidBrush purpleBrush = new SolidBrush(Color.Purple);
+        SolidBrush darkRedBrush = new SolidBrush(Color.DarkRed);
 
         //sounds
         SoundPlayer player = new SoundPlayer(Properties.Resources.pointscore);
         SoundPlayer speedPlayer = new SoundPlayer(Properties.Resources.speedBoost);
         SoundPlayer endGame = new SoundPlayer(Properties.Resources.endGame);
+        SoundPlayer freezeEffect = new SoundPlayer(Properties.Resources.freexeEffect);
+        SoundPlayer pointLost = new SoundPlayer(Properties.Resources.pointLost);
+        SoundPlayer slowdownSound = new SoundPlayer(Properties.Resources.slowdownEffect);
 
         //create a random generator object
         Random randGen = new Random();
@@ -126,6 +137,9 @@ namespace squareChaser
             e.Graphics.FillRectangle(greenBrush, player2);
             e.Graphics.FillRectangle(whiteBrush, pointsquare);
             e.Graphics.FillRectangle(yellowBrush, speedboost);
+            e.Graphics.FillRectangle(darkRedBrush, scorereduction);
+            e.Graphics.FillRectangle(purpleBrush, slowdown);
+            e.Graphics.FillRectangle(blueBrush, freeze);
 
 
 
@@ -133,6 +147,33 @@ namespace squareChaser
 
         private void timer_Tick(object sender, EventArgs e)
         {
+            //display rules 
+            if (showRules == true)
+            {
+                ruleBox.Text = "Red = point loss\n";
+                ruleBox.Refresh();
+                Thread.Sleep(1500);
+                ruleBox.Text += "Purple = speed reduction\n";
+                ruleBox.Refresh();
+                Thread.Sleep(1500);
+                ruleBox.Text += "white = point gained\n";
+                ruleBox.Refresh();
+                Thread.Sleep(1500);
+                ruleBox.Text += "dark red = point lost\n";
+                ruleBox.Refresh();
+                Thread.Sleep(1500);
+                ruleBox.Text += "Yellow = speed boost\n";
+                ruleBox.Refresh();
+                Thread.Sleep(1500);
+                ruleBox.Text += "Blue = freeze\n";
+                ruleBox.Refresh();
+                Thread.Sleep(1500);
+                ruleBox.Text += "first to 5 wins!\n";
+                ruleBox.Refresh();
+                Thread.Sleep(1500);
+                showRules = false;
+            }
+
             //move player 1
             if (wDown == true && player1.Y > 0)
             {
@@ -181,8 +222,8 @@ namespace squareChaser
             {
                 player1Score++;
                 player1ScoreLabel.Text = $"{player1Score}";
-                pointsquare.X = randGen.Next(5, 595);
-                pointsquare.Y = randGen.Next(5, 595);
+                pointsquare.X = randGen.Next(5, 395);
+                pointsquare.Y = randGen.Next(5, 395);
                 player.Play();
 
             }
@@ -190,27 +231,80 @@ namespace squareChaser
             {
                 player2Score++;
                 player2ScoreLabel.Text = $"{player2Score}";
-                pointsquare.X = randGen.Next(5, 595);
-                pointsquare.Y = randGen.Next(5, 595);
+                pointsquare.X = randGen.Next(5, 395);
+                pointsquare.Y = randGen.Next(5, 395);
                 player.Play();
 
             }
 
             //player hits speedboost
-            if (player1.IntersectsWith (speedboost))
+            if (player1.IntersectsWith(speedboost))
             {
                 player1Speed++;
-                speedboost.X = randGen.Next(5, 595);
-                speedboost.Y = randGen.Next(5, 595);
+                speedboost.X = randGen.Next(5, 395);
+                speedboost.Y = randGen.Next(5, 395);
                 speedPlayer.Play();
             }
-            else if (player2.IntersectsWith (speedboost))
+            else if (player2.IntersectsWith(speedboost))
             {
                 player2Speed++;
-                speedboost.X = randGen.Next(5, 595);
-                speedboost.Y = randGen.Next(5, 595);
+                speedboost.X = randGen.Next(5, 395);
+                speedboost.Y = randGen.Next(5, 395);
                 speedPlayer.Play();
 
+            }
+
+            //hits slowddown
+            if (player1.IntersectsWith(slowdown))
+            {
+                player1Speed--;
+                slowdown.X = randGen.Next(5, 395);
+                slowdown.Y = randGen.Next(5, 395);
+                slowdownSound.Play();
+            }
+            else if (player2.IntersectsWith(slowdown))
+            {
+                player2Speed--;
+                slowdown.X = randGen.Next(5, 395);
+                slowdown.Y = randGen.Next(5, 395);
+                slowdownSound.Play();
+            }
+
+            //hits point reduction
+            if (player1.IntersectsWith(scorereduction))
+            {
+                player1Score--;
+                player1ScoreLabel.Text = $"{player1Score}";
+                scorereduction.X = randGen.Next(5, 395);
+                scorereduction.Y = randGen.Next(5, 395);
+                pointLost.Play();
+            }
+            else if (player2.IntersectsWith(scorereduction))
+            {
+                player2Score--;
+                player2ScoreLabel.Text = $"{player2Score}";
+                scorereduction.X = randGen.Next(5, 395);
+                scorereduction.Y = randGen.Next(5, 395);
+                pointLost.Play();
+            }
+            //freeze
+            if (player1.IntersectsWith (freeze))
+            {
+                player1Speed = 0;
+                Thread.Sleep(3000);
+                player1Speed = 6;
+                freeze.X = randGen.Next(5, 395);
+                freeze.Y = randGen.Next(5, 395);
+                freezeEffect.Play();
+            }
+            else if (player2.IntersectsWith (freeze))
+            {
+                player2Speed = 0;
+                Thread.Sleep(3000);
+                player2Speed = 6;
+                freeze.X = randGen.Next(5, 395);
+                freeze.Y = randGen.Next(5, 395);
+                freezeEffect.Play();
             }
             
             //who wins?
